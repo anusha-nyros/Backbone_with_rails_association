@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BackbonerailsApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="wrapper">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+		<li class="<%= menu_active('admin/admin') %>"> <h1 style="color:white">BackboneRails</h1></li>
+		<li class="<%= menu_active('listings') %>"><%= link_to "Listings", listings_path() %></li>
+	</ul>
+      </div>
+    </div>
+   </div>
+  </div>
+<%= yield %>
+
+</body>
+</html>

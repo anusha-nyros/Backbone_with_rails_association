@@ -1,0 +1,24 @@
+<h1>Listings</h1><br />
+<%= link_to "New Listing", "", class: "btn btn-primary new" %><br /><br />
+<div class="indexlisting">
+<table class="table table-striped">
+	<tr>
+		<th>Name:</th>
+		<th>Headline:</th>
+		<th>Description:</th>
+		<th></th>
+	</tr>
+<%% for listing in @listings.models: %>
+  <tr>
+	<td><%%= listing.get('name') %></td>
+        <td><%%= listing.get('headline') %></td>
+        <td><%%= listing.get('description') %></td>
+	<td><input type="hidden" class="list_id" id= "<%%- @safe listing.id %>" value= "">
+	     <button class="btn btn-success show" style= "width:54px" id="<%%= listing.get('id') %>">Show </button>
+	     <button class= "btn btn-primary edit" style= "margin-top:-47px;margin-left:58px;" id="<%%= listing.get('id') %>" >Edit</button>
+             <button class= "btn btn-danger delete" style= "margin-top:-46px;margin-left:2px;" confirm= "Are you sure to Delete?" id="<%%= listing.get('id') %>">Delete</button> 	    
+        </td>
+  </tr>
+<%% end %>
+<table>
+</div>

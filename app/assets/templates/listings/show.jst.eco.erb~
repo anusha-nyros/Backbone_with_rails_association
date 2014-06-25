@@ -1,0 +1,15 @@
+<h1>Listings</h1>
+<div class="container">
+<p><b>Name: </b>
+<%%= @listing.get('name') %></p>
+<p><b>Headline: </b>
+<%%= @listing.get('headline') %></p>
+<p>	<b>Descripton: </b>
+<%%= @listing.get('description') %></p>
+<p>
+        <input type="hidden" name="list_id" id="list_id" value= "<%%= @listing.get('id') %>">
+	    <%= link_to "Back", "", class: "btn btn-info back" %>
+ 	    <button class= "btn btn-primary edit" id="<%%= @listing.get('id') %>" >Edit</button>
+	    <button class= "btn btn-danger delete" confirm= "Are you sure to Delete?" id="<%%= @listing.get('id') %>">Delete</button>
+</p>
+</div>
