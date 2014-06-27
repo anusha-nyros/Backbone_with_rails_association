@@ -3,6 +3,15 @@ window.BackbonerailsApp =
   Collections: {}
   Views: {}
   Routers: {}
+<<<<<<< HEAD
 
   
 
+=======
+  initialize: -> 
+      new BackbonerailsApp.Routers.Listings()
+      Backbone.history.start(pushState: true)
+
+$(document).ready ->
+  BackbonerailsApp.initialize()
+>>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee

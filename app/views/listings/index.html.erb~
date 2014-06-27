@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container" id="container">
 
 </div>
@@ -16,3 +17,6 @@
   });
   
 </script>
+=======
+<%= render :file => 'main/index'%>
+>>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee

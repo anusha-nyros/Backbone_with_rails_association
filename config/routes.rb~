@@ -1,4 +1,5 @@
 BackbonerailsApp::Application.routes.draw do
+<<<<<<< HEAD
   #resources :contacts
 
  resources :listings
@@ -8,6 +9,11 @@ resources :features
           resources :contacts
     end
   root :to =>  "listings#index"
+=======
+    resources :listings
+
+  root :to =>  "main#index"
+>>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

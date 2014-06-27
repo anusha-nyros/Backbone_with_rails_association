@@ -1,0 +1,20 @@
+<form id="new-listing" name="listing" class =" form-horizontal listing-form">
+	<div class="control-group string optional">
+		<label class="string optional control-label" for="name">Name: </label>
+		<div class="controls"><input class="string optional type="text" name="name" id="name" >
+		</div>
+	</div>
+	<div class="control-group string optional">
+		<label class="string optional control-label" for="headline">Headline: </label>
+		<div class="controls"><input class="string optional type="text" id="headline" name="headline">
+		</div>
+	</div>
+	<div class="control-group text optional">
+		<label class="text optional control-label" for="description">Description: </label>
+		<div class="controls"><textarea class="text optional span9" cols="40" id="description" name="description" rows="5" style="width:50%"></textarea></div></div>
+	  <div class="form-actions">
+  	  <a href="/listings" class="back btn btn-success ">Back</a>&nbsp;&nbsp;
+	  <input class="btn btn-primary button" name="submit" type="submit" value="Create Listing">
+  	</div>
+
+</form>

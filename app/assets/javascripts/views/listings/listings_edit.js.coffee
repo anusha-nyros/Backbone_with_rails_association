@@ -6,6 +6,7 @@ class BackbonerailsApp.Views.ListingsEdit extends Backbone.View
 
   events:
     "click .button": "updateListing"
+<<<<<<< HEAD
     "click .back": "backList"
 
   backList: (e) ->
@@ -48,3 +49,19 @@ class BackbonerailsApp.Views.ListingsEdit extends Backbone.View
 
 
 
+=======
+
+  updateListing: (e) ->
+    e.preventDefault()
+    @model.set name: @$('#listing_name').val()
+    @model.set headline: @$('#listing_headline').val()
+    @model.set description: @$('#listing_description').val()
+    @model.save({"name": @$el.find("#listing_name").val(),"headline": @$el.find("#listing_headline").val(),"description": @$el.find("#listing_description").val()})
+    console.log("succeess")
+    console.log(@collection.length)
+    Backbone.history.navigate("/listings", {trigger: true})
+
+  render: ->
+    $(@el).html(@template(listing: @model))
+    this
+>>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee

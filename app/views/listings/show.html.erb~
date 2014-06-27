@@ -1,0 +1,1 @@
+<%= render :file => 'app/assets/templates/listings/show.jst.eco.erb'%>

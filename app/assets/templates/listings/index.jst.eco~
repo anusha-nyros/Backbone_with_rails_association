@@ -1,0 +1,32 @@
+<h1 class="span4">BackboneApp</h1>
+<div class="container" id="container">
+<button class="btn btn-primary new">New Listing</button><br/><br/><br/>
+<div class="indexlisting">
+<table class="table table-striped">
+	<tr>
+		<th>Name:</th>
+		<th>Headline:</th>
+		<th>Description:</th>
+		<th></th>
+	</tr>
+<% for listing in @listings.models: %>
+  <tr>
+	<td><%= listing.get('name') %></td>
+        <td><%= listing.get('headline') %></td>
+        <td><%= listing.get('description') %></td>
+	<td><input type="button" class="show btn btn-success" id="<%= listing.get('id')%>" value="Show">
+	    <input type="button" class="edit btn btn-primary" id="<%= listing.get('id')%>" value="Edit">
+	    <input type="button" class="delete btn btn-danger" id="<%= listing.get('id')%>" value="Delete">
+		<%= @linkTo @project %>
+  project: { id: 4, name: "Crate & Barrel" }
+  linkTo: (project) ->
+    url  = "/projects/#{project.id}"
+    name = @escape project.name
+    @safe "<a href='#{url}'>#{name}</a>"
+        </td>
+</tr>
+<% end %>
+<table>
+
+</div>
+</div>

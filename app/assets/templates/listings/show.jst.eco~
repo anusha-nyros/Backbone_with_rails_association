@@ -1,0 +1,14 @@
+<h1>Listings</h1>
+<div class="container">
+<p><b>Name: </b>
+<%= @listing.get('name') %></p>
+<p><b>Headline: </b>
+<%= @listing.get('headline') %></p>
+<p>	<b>Descripton: </b>
+<%= @listing.get('description') %></p>
+<p>
+        <button class="back btn btn-mini" id= "<%= listing.get('id')%>">Back</button>
+	<button class="edit btn btn-mini btn-primary" id= "<%= listing.get('id')%>">Edit</button>
+	<button class="delete btn btn-mini btn-danger" id= "<%= listing.get('id')%>">Delete</button>
+</p>
+</div>
