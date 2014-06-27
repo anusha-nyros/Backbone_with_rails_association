@@ -1,0 +1,42 @@
+<h1>Listings</h1><br />
+<a href='#/new' class="btn btn-primary">New Listing</a><br /><br />
+<div class="indexlisting">
+<table class="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Headline</th>
+		<th>Description</th>
+		<th>Features</th>
+		<th></th>
+	</tr> 
+<%% for listing in @listings.models: %>
+  <tr>
+	<td><%%= listing.get('name') %></td>
+        <td><%%= listing.get('headline') %></td>
+        <td><%%= listing.get('description') %></td>
+	<%% featurename = [] %>
+	<%% i=0 %>
+	<td><%% for feature in listing.get('features'): %>
+	      <%% featurename[i++] = feature.name %>
+	    <%% end %>
+	<%%= featurename %>
+        </td>
+	<td><input type="hidden" class="list_id" value= "<%%= listing.get('id') %>">
+	     <a href ="#/<%%= listing.get('id') %>" class="btn" >Show </a>
+	     <a href ="#/<%%= listing.get('id') %>/edit" class= "btn btn-primary">Edit</a>
+             <button class= "btn btn-danger delete" id="<%%= listing.get('id') %>">Delete</button> 
+	     <button class= "btn btn-success contact" id="<%%= listing.get('id') %>">Add Contact</button> 
+	     <a href="" id = "<%%= listing.get('id')%>" class="contactlist btn">Show Contacts</a>	    
+        </td>
+  </tr>
+	<tr>
+		<td colspan=5><table class="<%%= listing.get('id')%> table table-striped" style="display:none;">
+			<tr><th>Name:</th><th>Email:</th><th>Phone:</th>
+ 			<%% for contact in listing.get('contacts'): %>
+ 				<tr><td><%%= contact.name %></td><td><%%= contact.email %></td><td><%%= contact.phone %></td></tr>
+			<%% end %>				
+		</table></td>
+	</tr>
+<%% end %>
+<table>
+</div>

@@ -1,0 +1,33 @@
+<h1>Edit <%%= @listing.get('name')%></h1>
+<% form_for :listing, url: "#", html: {class: "form-horizontal"} do |f| %>
+	<div class="form-group">
+		<%= f.label "Name" %>
+		<%#= f.text_field "name", value: "#{@name}" %>
+                <input id="listing_name" name="listing[name]" size="30" type="text" value="<%%= @listing.get('name')%>">
+	</div>
+	<div class="form-group">
+		<%= f.label "Headline" %></label>
+ 		<%#= f.text_field "headline", value: "#{@headline}" %>
+    		<input id="listing_headline" name="listing[headline]" size="30" type="text"  value="<%%= @listing.get('headline')%>">
+	</div>
+	<div class="form-group">
+		<%= f.label "Description" %>
+		<%#= f.text_area "description", size: "70x5", value: "#{@description}" %>
+		<textarea cols="70" id="listing_description" name="listing[description]" rows="5"> <%%= @listing.get('description') %></textarea>
+        </div>
+	<div class="form-group">
+		<%%- feature_name = [] %>
+		<%% for fetur in @listing.get('features'): %>
+		   <%% feature_name = @escape fetur.name %>
+			<input type="hidden" name = "ft_name" id="ft_name_<%%=  feature_name %>" class = "<%%=  feature_name %>"> 
+		<%% end %>
+		<%= f.label "Features" %>
+		<%% for feature in @features.models: %>
+			<input id="listing_feature_ids_<%%=feature.get('id')%>" name="listing[feature_ids][]" type="checkbox" class= "<%%= feature.get('name')%>" value="<%%= feature.get('id')%>" ><%%= feature.get('name') %>  
+    		<%% end %>
+	</div>
+	<div class="form_actions">
+		<%= link_to "Back", "#/listings", class: 'btn'%>
+		<%= f.submit "Update Listing", class: "btn btn-primary button" %>
+	</div>
+<% end %>

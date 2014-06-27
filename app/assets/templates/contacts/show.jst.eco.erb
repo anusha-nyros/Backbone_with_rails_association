@@ -1,0 +1,15 @@
+<h1>Contacts</h1>
+<div class="container">
+<p><b>Name: </b>
+<%%= @contact.get('name') %></p>
+<p><b>Email: </b>
+<%%= @contact.get('email') %></p>
+<p><b>Phone: </b>
+<%%= @contact.get('phone') %></p>
+<p>
+        <input type="hidden" name="contact_id" id="contact_id" value= "<%%= @contact.get('id') %>">
+	    <%= link_to "Back", "", class: "btn btn-info back" %>
+ 	    <button class= "btn btn-primary edit" id="<%%= @contact.get('id') %>" >Edit</button>
+	    <button class= "btn btn-danger delete" confirm= "Are you sure to Delete?" id="<%%= @contact.get('id') %>">Delete</button>
+</p>
+</div>

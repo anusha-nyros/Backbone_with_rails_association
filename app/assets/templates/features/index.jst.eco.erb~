@@ -1,0 +1,20 @@
+<h1>Features</h1><br />
+<%= link_to "New Feature", "", class: "btn btn-primary new" %><br /><br />
+<div class="indexfeature">
+<table class="table table-striped">
+	<tr>
+		<th>Name:</th>
+		<th></th>
+	</tr>
+<%% for feature in @features.models: %>
+  <tr>
+	<td><%%= feature.get('name') %></td>
+	<td><input type="hidden" class="list_id" value= "<%%= feature.get('id') %>">
+	     <button class="btn btn-success show" style= "width:54px" id="<%%= feature.get('id') %>">Show </button>
+	     <button class= "btn btn-primary edit" style= "margin-top:-47px;margin-left:58px;" id="<%%= feature.get('id') %>" >Edit</button>
+             <button class= "btn btn-danger delete" style= "margin-top:-46px;margin-left:2px;" confirm= "Are you sure to Delete?" id="<%%= feature.get('id') %>">Delete</button> 	    
+        </td>
+  </tr>
+<%% end %>
+<table>
+</div>

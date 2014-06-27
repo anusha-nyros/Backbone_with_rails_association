@@ -1,0 +1,25 @@
+<h1>contacts</h1><br />
+<%= link_to "New Contact", "", class: "btn btn-primary new" %><br /><br />
+<div class="indexcontact">
+<table class="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Phone</th>
+		<th></th>
+	</tr>
+<%%= console.log(@contacts) %>
+<%% for contact in @contacts.models: %>
+  <tr>
+	<td><%%= contact.get('name') %></td>
+        <td><%%= contact.get('email') %></td>
+        <td><%%= contact.get('phone') %></td>
+	<td><input type="hidden" class="contact_id" value= "<%%= contact.get('id') %>">
+	     <button class="btn show" style= "width:54px" id="<%%= contact.get('id') %>">Show </button>
+	     <button class= "btn btn-primary edit" style= "margin-top:-47px;margin-left:58px;" id="<%%= contact.get('id') %>" >Edit</button>
+             <button class= "btn btn-danger delete" style= "margin-top:-46px;margin-left:2px;" confirm= "Are you sure to Delete?" id="<%%= contact.get('id') %>">Delete</button> 
+        </td>
+  </tr>
+<%% end %>
+<table>
+</div>

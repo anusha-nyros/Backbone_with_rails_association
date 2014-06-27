@@ -1,0 +1,11 @@
+<h1>Listings</h1>
+<div class="container">
+<p><b>Name: </b>
+<%%= @feature.get('name') %></p>
+<p>
+        <input type="hidden" name="list_id" id="list_id" value= "<%%= @feature.get('id') %>">
+	    <%= link_to "Back", "", class: "btn btn-info back" %>
+ 	    <button class= "btn btn-primary edit" id="<%%= @feature.get('id') %>" >Edit</button>
+	    <button class= "btn btn-danger delete" confirm= "Are you sure to Delete?" id="<%%= @feature.get('id') %>">Delete</button>
+</p>
+</div>
