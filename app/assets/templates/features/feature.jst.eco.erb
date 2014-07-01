@@ -1,0 +1,11 @@
+<h4>Features</h4>
+<%%- feature_name = [] %>
+<%% for fetur in @features.models: %>
+   <%% feature_name = @escape fetur.get('name') %>
+       <input type="hidden" name = "ft_name" id="ft_name_<%%= feature_name %>" class = "<%%= feature_name %>"> 
+<%% end %>
+<%% for feature in @feature.models: %>
+	<input id="listing_feature_ids_<%%=feature.get('id')%>" name="listing[feature_ids][]" type="checkbox" class= "<%%= feature.get('name')%>" value="<%%= feature.get('id')%>" ><%%= feature.get('name') %>
+<%% end %>
+<br />
+<input type="submit" class="btn btn-primary save" name="feature_submit" value="Save">

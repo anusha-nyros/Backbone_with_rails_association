@@ -43,3 +43,8 @@ gem 'thin'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'backbone-on-rails'
+<<<<<<< HEAD
+
+gem 'will_paginate'
+=======
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49

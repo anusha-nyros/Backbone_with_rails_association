@@ -1,22 +1,375 @@
 <<<<<<< HEAD
+    <div class="alert alert-success container" style="display:none">
+
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+
+        <span class="message"></span>
+
+    </div>
+<div id="new_list" class="container"></div><br/><br/>
+<div class="container" id="container">
+
+</div>
+<div id="grid"></div>
+<div id="paginator"></div>
+<div id="modal-window" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal Header</h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+
+
+
+
+<script>
+    
+
+      var Issues = Backbone.PageableCollection.extend({
+        model: BackbonerailsApp.Models.Listing,
+        // url: "https://api.github.com/search/issues",
+        mode: "server" ,
+
+        url: '/listings' ,
+
+        events: {
+          "click #paginationSelect" : "fetchSelectedData"
+        },
+
+        fetchSelectedData: function(){
+        },
+
+        // Initial pagination states
+        state: {
+          pageSize: 5,
+          order: 1
+        },
+
+        // You can remap the query parameters from `state` keys from
+        // the default to those your server supports
+        queryParams: {
+          totalPages: null,
+          totalRecords: null,
+          sortKey: "sort"
+        },
+
+
+
+        parseState: function (resp, queryParams, state, options) {
+          return {totalRecords: resp.total_pages};
+        },
+
+        // get the actual records
+        parseRecords: function (resp, options) {
+	  console.log(JSON.parse(resp.listings))
+          return JSON.parse(resp.listings);
+        }
+
+      });
+
+
+      var DeleteCell = Backgrid.Cell.extend({
+        template: _.template('<a href="#" class="btn btn-danger btn-small">Delete</a>'),
+        events: {
+          "click": "deleteRow"
+        },
+        deleteRow: function (e) {
+          e.preventDefault();
+          // console.log(JSON.stringify(this.model));
+          // console.log(JSON.stringify(this.model.collection))
+          this.model.destroy()
+          //this.model.collection.remove(this.model);
+          
+        },
+        render: function () {
+          this.$el.html(this.template());
+          this.delegateEvents();
+          return this;
+        }
+      });
+
+
+
+      var AddCell = Backgrid.Cell.extend({
+        template: _.template('<a href="#" class="btn btn-success btn-small">Show</a>'),
+        events: {
+          "click": "showRow"
+        },
+        showRow: function (e) {
+          e.preventDefault();
+          var view = new BackbonerailsApp.Views.ListingsShow({model: this.model})
+          $(".modal-body").html(view.render().el)
+          $('#modal-window').modal('show')
+        },
+        render: function () {
+          this.$el.html(this.template({id: this.model.id}));
+          this.delegateEvents();
+          return this;
+        }
+      });
+
+
+
+      var EditCell = Backgrid.Cell.extend({
+        template: _.template('<a href="#" class="btn btn-primary btn-small">Edit</a>'),
+        events: {
+          "click": "editRow"
+        },
+        editRow: function (e) {
+          e.preventDefault();
+          var features = this.model.get("features")
+ 	  console.log(features)
+          feature = []
+	  features.each(function(index,model){
+	  console.log(index.get("name"))
+          feature[model] = index.get("name") 
+          });
+          var view = new BackbonerailsApp.Views.ListingsEdit({model: this.model, collection: feature})
+          $(".modal-body").html(view.render().el)
+          $('#modal-window').modal('show')
+        },
+        render: function () {
+          this.$el.html(this.template({id: this.model.id}));
+          this.delegateEvents();
+          return this;
+        }
+      });
+
+      var AddContactCell = Backgrid.Cell.extend({
+        template: _.template('<a href="#" class="btn btn-small">Add Contact</a>'),
+        events: {
+          "click": "addContact"
+        },
+        addContact: function (e) {
+          e.preventDefault();
+          var view = new BackbonerailsApp.Views.ContactsNew({model: this.model})
+          $(".modal-body").html(view.render().el)
+          $('#modal-window').modal('show')
+        },
+        render: function () {
+          this.$el.html(this.template({id: this.model.id}));
+          this.delegateEvents();
+          return this;
+        }
+      });
+
+
+     var ShowContactCell = Backgrid.Cell.extend({
+        template: _.template('<a href="#" class="btn btn-small">Show Contacts</a>'),
+        events: {
+          "click": "showContacts"
+        },
+        showContacts: function (e) {
+          e.preventDefault();
+          var view = new BackbonerailsApp.Views.ContactsShow({collection: this.model.get('contacts')})
+          $(".modal-body").html(view.render().el)
+          $('#modal-window').modal('show')
+        },
+        render: function () {
+          this.$el.html(this.template({id: this.model.id}));
+          this.delegateEvents();
+          return this;
+        }
+      });
+         
+
+     var TitledUriCell = Backgrid.UriCell.extend({
+
+        className: "titled-uri-cell",
+	
+	events: {
+	    "click": "editFeatures"
+	},
+ 	
+	editFeatures: function(e){
+		var view = new BackbonerailsApp.Views.Feature({model: this.model, collection: this.model.get('features')})
+		$('.modal-body').html(view.render().el)
+ 		$('#modal-window').modal('show')
+	},
+
+        render: function() {
+          this.$el.empty();
+          var features = this.model.get("features")
+ 	  console.log(features)
+          feature = []
+	  features.each(function(index,model){
+	  console.log(index.get("name"))
+          feature[model] = index.get("name") 
+          });
+	  this.$el.text(this.formatter.fromRaw(feature.join(',')));
+          this.delegateEvents();
+          return this;
+        }
+     });
+
+
+      var issues = new Issues();
+
+      var grid = new Backgrid.Grid({
+
+        columns: [ 
+      /*  {
+        name: "id",
+        editable: false,
+        cell: Backgrid.IntegerCell.extend({
+          orderSeparator: ''
+        })
+        },*/
+        {
+           name: "name",
+           cell: "string",
+           sortable: true,
+           //editable: false
+         },
+        {
+          name: "headline",
+          cell: "string",
+          sortable: true,
+          //editable: true
+        },
+        {
+          name: "description",
+          label: "Description",
+          cell: "string" , //Backgrid.UriCell.extend({
+
+          //}),
+
+          sortable: true
+        },
+	{
+          name: "features",
+          label: "Features",
+          cell: TitledUriCell , //Backgrid.UriCell.extend({
+
+          //}),
+
+          sortable: true
+        },
+        // { 
+        //   label: "Last Login Time",
+        //   name: "id",
+        //   cell: Backgrid.UriCell.extend({
+
+        //   }),
+        // },
+        {
+          cell: AddCell
+        },
+        {
+          // name: "weight",
+          // label: "Hello",
+          cell: DeleteCell
+        },
+	 {
+          // name: "weight",
+          // label: "Hello",
+          cell: AddContactCell
+        },
+	 {
+          // name: "weight",
+          // label: "Hello",
+          cell: ShowContactCell
+        }
+        ],
+
+        collection: issues
+      });
+
+
+     var footer = Backgrid.Footer.extend({
+      events: {
+      "click a": "myfunction"
+      },
+
+      myfunction: function() {
+        alert("i");
+      }
+
+     });
+
+      var paginator = new Backgrid.Extension.Paginator({
+        collection: issues,
+        event : {
+          "click .backgrid-paginator" : "fetchSelectedData"
+        },
+
+        fetchSelectedData: function(e){
+        }
+      });
+
+
+      // paginator.listenTo(issues, "reset", function () {
+      //     console.log('i heard that');
+      //     handler = Gmaps.build('Google');
+      //     handler.buildMap({
+      //       provider: {
+      //         //disableDefaultUI: true
+      //         // pass in other Google Maps API options here
+      //         },
+      //       internal: {
+      //         id: 'map'
+      //         }
+      //       },
+      //       function(){
+      //         console.log(<%=raw @hash.to_json.inspect %>)
+      //         markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      //         handler.bounds.extendWith(markers);
+      //         handler.fitMapToBounds();
+      //       }
+      //     );
+      // });
+
+      $("#container").append(grid.render().$el);
+      $("#paginator").append(paginator.render().$el);
+      issues.fetch({reset: true});
+      $("#new_list").append('<a href="#/new" class="btn btn-primary btn-small">New Listing</a>');
+
+    </script>
+
+=======
+<<<<<<< HEAD
 <div class="container" id="container">
 
 </div>
 
 
 
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 
 
 <script type="text/javascript">
   $(function() {
 
+<<<<<<< HEAD
+    window.router = new BackbonerailsApp.Routers.Listings({listings: <%= @listings.to_json.html_safe -%>, 
+                                                      pagination: <%= @pagination.to_json.html_safe -%>   });
+=======
     window.router = new BackbonerailsApp.Routers.Listings({listings: <%= @listings.to_json.html_safe -%>});
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 
     Backbone.history.start()
 
   });
   
 </script>
+<<<<<<< HEAD
+<style>
+ 
+ .backgrid-paginator ul li {}
+  });
+
+ .error {
+    color: red;
+ }
+</style>
+=======
 =======
 <%= render :file => 'main/index'%>
 >>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49

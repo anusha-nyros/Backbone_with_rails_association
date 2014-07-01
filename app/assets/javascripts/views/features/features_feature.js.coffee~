@@ -1,0 +1,21 @@
+class BackbonerailsApp.Views.Feature extends Backbone.View
+  template: JST['feature/feture']
+
+  initialize: ->
+    @collection.on('reset', @render, this)
+
+  events:
+    "blur .titled-uri-cell": "updateFeature"
+
+  updateFeature: (e) ->
+    e.preventDefault()
+    alert(@$('#feature_name').val())
+    @model.set name: @$('#feature_name').val()
+    @model.save({"name": @$el.find("#feature _name").val()})
+    console.log("succeess")
+    console.log(@collection.length)
+    Backbone.history.navigate('/#features', {trigger: true})
+
+  render: ->
+    $(@el).html(@template(features: @collection))
+    this

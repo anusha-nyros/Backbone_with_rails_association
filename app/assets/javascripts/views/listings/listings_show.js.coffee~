@@ -4,12 +4,15 @@ class BackbonerailsApp.Views.ListingsShow extends Backbone.View
   
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
   events:
     'click .back': 'backList'
   
   backList: ->
     Backbone.history.navigate('/listings', {trigger: true})
 >>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
   render: ->
     $(@el).html(@template(listing: @model))
     this

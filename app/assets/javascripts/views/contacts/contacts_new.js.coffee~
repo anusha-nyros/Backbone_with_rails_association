@@ -4,7 +4,10 @@ class BackbonerailsApp.Views.ContactsNew extends Backbone.View
   initialize: ->
     @listing = @model
     @model = new BackbonerailsApp.Models.Contact()
+<<<<<<< HEAD
+=======
     @collection.on('reset', @render, this)
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
     
   events:
     "click .button": "saveContact"
@@ -18,7 +21,15 @@ class BackbonerailsApp.Views.ContactsNew extends Backbone.View
     @model.save({"name": @$el.find("#contact_name").val(),"email": @$el.find("#contact_email").val(),"phone": @$el.find("#contact_phone").val(), "listing_id": @listing.id},{
     success: ->
       console.log("succeess")
+<<<<<<< HEAD
+      $("#modal-window").modal('hide');
+      $('.alert').alert()
+      $('.alert').css('display', 'block')
+      $('.message').html("Contact Added Succeessfully")
+      window.issues.fetch({reset:true})    
+=======
       Backbone.history.navigate('#/listings', {trigger: true})
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
     error: (@model, response)->
       console.log(response)
       Backbone.history.navigate('#/contacts/new', {trigger: true})

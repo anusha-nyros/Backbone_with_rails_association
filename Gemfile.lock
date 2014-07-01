@@ -123,6 +123,10 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+<<<<<<< HEAD
+    will_paginate (3.0.5)
+=======
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 
 PLATFORMS
   ruby
@@ -140,3 +144,7 @@ DEPENDENCIES
   sqlite3
   thin
   uglifier (>= 1.0.3)
+<<<<<<< HEAD
+  will_paginate
+=======
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49

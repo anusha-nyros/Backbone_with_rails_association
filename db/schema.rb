@@ -12,6 +12,9 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 ActiveRecord::Schema.define(:version => 20140626091134) do
 
   create_table "contacts", :force => true do |t|
@@ -33,9 +36,12 @@ ActiveRecord::Schema.define(:version => 20140626091134) do
     t.integer "feature_id"
     t.integer "listing_id"
   end
+<<<<<<< HEAD
+=======
 =======
 ActiveRecord::Schema.define(:version => 20140623062542) do
 >>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
+>>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 
   create_table "listings", :force => true do |t|
     t.string   "name"
