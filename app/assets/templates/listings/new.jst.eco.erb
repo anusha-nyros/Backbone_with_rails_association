@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 <h1>New Listing</h1>
-=======
-<<<<<<< HEAD
-<h1>New Listing</h1>
-=======
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 <% form_for :listing, url: "#", html: {class: "form-horizontal"} do |f| %>
 	<div class="form-group">
 		<%= f.label "Name" %>
@@ -19,10 +12,6 @@
 		<%= f.label "Description" %>
 		<%= f.text_area "description", size: "70x5" %>
         </div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 	<div class="form-group">
 		<%= f.label "Features" %>
 		<%% for feature in @features.models: %>
@@ -31,16 +20,7 @@
 		<%% end %>
 	</div>
 	<div class="form_actions">
-<<<<<<< HEAD
-		<%= link_to "Back", '#/', class: 'back btn'%>
-=======
 		<%= link_to "Back", "#/listings", class: 'btn back'%>
-=======
-
-	<div class="form_actions">
-		<%= link_to "Back", "", class: 'btn back'%>
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 		<%= f.submit "Create Listing", class: "btn btn-primary button" %>
 	</div>
 <% end %>

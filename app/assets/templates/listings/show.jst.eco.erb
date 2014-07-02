@@ -1,27 +1,9 @@
 <h1>Listings</h1>
-<<<<<<< HEAD
 <div class="span6">
-=======
-<div class="container">
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 <p><b>Name: </b>
 <%%= @listing.get('name') %></p>
 <p><b>Headline: </b>
 <%%= @listing.get('headline') %></p>
 <p>	<b>Descripton: </b>
 <%%= @listing.get('description') %></p>
-<<<<<<< HEAD
-=======
-<p>
-        <input type="hidden" name="list_id" id="list_id" value= "<%%= @listing.get('id') %>">
-	    <%= link_to "Back", "", class: "btn btn-info back" %>
-<<<<<<< HEAD
- 	    <a href ="#/<%%= @listing.get('id') %>/edit" class= "btn btn-primary">Edit</a>
-            <button class= "btn btn-danger delete" id="<%%= @listing.get('id') %>">Delete</button> 
-=======
- 	    <button class= "btn btn-primary edit" id="<%%= @listing.get('id') %>" >Edit</button>
-	    <button class= "btn btn-danger delete" confirm= "Are you sure to Delete?" id="<%%= @listing.get('id') %>">Delete</button>
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
-</p>
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 </div>

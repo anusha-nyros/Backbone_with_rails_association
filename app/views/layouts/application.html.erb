@@ -12,21 +12,45 @@
     <div class="navbar-inner">
       <div class="container">
         <ul class="nav">
-		<li class="<%= menu_active('admin/admin') %>"> <h1 style="color:white">BackboneRails</h1></li>
-<<<<<<< HEAD
-		<li class="<%= menu_active('listings') %>"><%= link_to "Listings", listings_url %></li>
-=======
-<<<<<<< HEAD
-		<li class="<%= menu_active('listings') %>"><%= link_to "Listings", listings_url %></li>
-=======
-		<li class="<%= menu_active('listings') %>"><%= link_to "Listings", listings_path %></li>
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
+		 <% if user_signed_in? %>
+			<li class="<%= menu_active('admin/admin') %>"> <h1 style="color:white">BackboneRails</h1></li>
+			<li class="<%= menu_active('listings') %>"><%= link_to "Listings", listings_url %></li>
+			<li class="dropdown">
+                    <a data-target="#" data-toggle="dropdown" class="pull-right dropdown-toggle"><%= current_user.email %><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    <li> 
+                          <%= link_to 'Edit account', edit_user_registration_path(current_user) %>
+                    </li>
+                     <li> 
+                          <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+                      </li>
+                    </ul>
+                 </li> 
+		<% else %>
+		<li>
+            	     <h1 style="color:white">BackboneRails</h1>
+		</li>
+		  <li>
+                    <%= link_to 'Login', new_user_session_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'Sign up', new_user_registration_path %>
+                  </li>
+                <% end %>
 	</ul>
       </div>
     </div>
    </div>
   </div>
+  <% if flash[:notice] %>
+   <div class="alert alert-success container">
+
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+
+        <span class="message"><%= flash[:notice]%></span>
+
+    </div>
+<% end %>
 <%= yield %>
 
 </body>

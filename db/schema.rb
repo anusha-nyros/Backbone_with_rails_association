@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
-ActiveRecord::Schema.define(:version => 20140626091134) do
+ActiveRecord::Schema.define(:version => 20140702084148) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -36,12 +32,6 @@ ActiveRecord::Schema.define(:version => 20140626091134) do
     t.integer "feature_id"
     t.integer "listing_id"
   end
-<<<<<<< HEAD
-=======
-=======
-ActiveRecord::Schema.define(:version => 20140623062542) do
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 
   create_table "listings", :force => true do |t|
     t.string   "name"
@@ -50,5 +40,25 @@ ActiveRecord::Schema.define(:version => 20140623062542) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "provider"
+    t.string   "uid"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

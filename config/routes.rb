@@ -1,8 +1,8 @@
 BackbonerailsApp::Application.routes.draw do
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
+
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   resources :contacts
 
  resources :listings
@@ -12,14 +12,9 @@ resources :features
           resources :contacts
     end
   root :to =>  "listings#index"
-<<<<<<< HEAD
-=======
-=======
-    resources :listings
 
-  root :to =>  "main#index"
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
+
+ # root :to =>  "main#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

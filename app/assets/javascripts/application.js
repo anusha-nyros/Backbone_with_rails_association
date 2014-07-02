@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-<<<<<<< HEAD
 //= require bootstrap-modal
 //= require underscore
 //= require backbone
@@ -22,11 +21,6 @@
 //= require backgrid
 //= require backgrid-paginator
 //= require backgrid-text-cell
-=======
-//= require underscore
-//= require backbone
-//= require backbonerails_app
->>>>>>> 7f520bbbda88cadbd7aa978e73b98b678bde9b49
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
