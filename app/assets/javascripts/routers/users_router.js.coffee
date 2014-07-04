@@ -6,7 +6,7 @@ class BackbonerailsApp.Routers.Users extends Backbone.Router
 
   initialize: ->
     @collection = new BackbonerailsApp.Collections.Users()
-    @model = new BackbonerailsApp.Collections.User()
+    @model = new BackbonerailsApp.Models.User()
 
   new: ->
     @collection.fetch().done =>

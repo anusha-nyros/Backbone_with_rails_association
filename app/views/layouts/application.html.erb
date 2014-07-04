@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-user-signed-in="<%= user_signed_in? ? 'true' : 'false' %>">
 <div class="wrapper">
   <div class="navbar">
     <div class="navbar-inner">

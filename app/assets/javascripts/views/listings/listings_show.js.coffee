@@ -7,8 +7,9 @@ class BackbonerailsApp.Views.ListingsShow extends Backbone.View
   
   backList: (e) ->
     e.preventDefault()
-    Backbone.history.navigate('/listings', {trigger: true})
+    Backbone.history.navigate('#/listings', {trigger: true})
 
   render: ->
+    console.log(@model)
     $(@el).html(@template(listing: @model))
     this

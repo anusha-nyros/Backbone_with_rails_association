@@ -1,11 +1,10 @@
 class ListingsController < ApplicationController
 
- before_filter :authenticate_user!
+ #before_filter :authenticate_user!
   respond_to :json
 
     def index
          @listings = Listing.paginate(:page => params[:page], :per_page => 5).order("#{params[:sort]} #{params[:order]} ")
-
        respond_to do |format|
           format.html
           format.json { render json: {listings: @listings.to_json(:include => [:features, :contacts]), :current_page => params[:page].to_i, 
@@ -16,7 +15,7 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     respond_to do |format|
-        format.html { render json: @listing }
+        format.html 
 	format.json { render json: @listing }
     end
   end
@@ -38,6 +37,7 @@ class ListingsController < ApplicationController
     params[:listing][:feature_ids] = params[:listing][:feature_ids].split(',')
       features = params[:listing][:feature_ids].collect { |i| Feature.find(i) }
       @listing.features = features
+     @listing.user = current_user
     @listing.save 
     respond_with @listing
 

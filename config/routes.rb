@@ -11,6 +11,7 @@ resources :features
 	  resources :features
           resources :contacts
     end
+
   root :to =>  "listings#index"
 
 

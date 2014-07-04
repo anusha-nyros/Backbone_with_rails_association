@@ -12,3 +12,39 @@
  *= require_tree .
 */
 @import 'bootstrap';
+
+
+
+.Facebook
+{
+   margin-left:180px;
+}
+.signin{
+    background-color: whitesmoke;
+    box-shadow: -3px 10px 45px #abc;
+    -moz-box-shadow: -3px 10px 45px #abc;
+    -webkit-box-shadow: -3px 10px 45px #abc;
+    border: 1px double #bbb;
+    padding: 20px;
+    margin-top: 30px;
+    margin-right: 150px;
+   border-radius: 20px;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+}
+.sign_div
+{
+   box-shadow: -3px 10px 45px #abc;
+    -moz-box-shadow: -3px 10px 45px #abc;
+    -webkit-box-shadow: -3px 10px 45px #abc;
+    border: 1px double #bbb;
+    padding-left: 120px;
+    padding-right: 0px;
+    padding-bottom: 60px;
+    padding-top: 60px;
+    margin-top: 60px;
+    margin-left: 100px;
+   border-radius: 20px;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+}

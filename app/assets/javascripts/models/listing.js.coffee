@@ -1,5 +1,8 @@
 class BackbonerailsApp.Models.Listing extends Backbone.Model
   urlRoot: "/listings"
+
+  label: ->
+    {'name': this.get('name'), 'headline': this.get('headline'), 'description': this.get('description')}
  
   initialize: ->
      this.set({

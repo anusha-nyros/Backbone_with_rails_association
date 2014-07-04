@@ -3,6 +3,7 @@ class BackbonerailsApp.Views.ContactsNew extends Backbone.View
   
   initialize: ->
     @listing = @model
+    @model = new BackbonerailsApp.Models.Contact()
     
   events:
     "click .button": "saveContact"
@@ -21,7 +22,6 @@ class BackbonerailsApp.Views.ContactsNew extends Backbone.View
       $('.alert').css('display', 'block')
       $('.message').html("Contact Added Succeessfully")
       window.issues.fetch({reset:true})    
-      Backbone.history.navigate('#/listings', {trigger: true})
     error: (@model, response)->
       console.log(response)
       Backbone.history.navigate('#/contacts/new', {trigger: true})
@@ -29,5 +29,6 @@ class BackbonerailsApp.Views.ContactsNew extends Backbone.View
 
 
   render: ->
+    console.log(@model)
     $(@el).html(@template(contact: @model, contacts: @collection))
     this

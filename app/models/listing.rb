@@ -4,4 +4,5 @@ class Listing < ActiveRecord::Base
   has_and_belongs_to_many :features
   has_many :contacts, :dependent => :destroy
 
+belongs_to :user
 end

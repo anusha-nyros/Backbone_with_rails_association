@@ -1,3 +1,8 @@
 class BackbonerailsApp.Views.UsersIndex extends Backbone.View
 
-  template: JST['users/index']
+  initialize: ->
+    template: _.template($('#user_session_template').html())
+
+  render: ->
+    $(@el).html(@template)
+    this
