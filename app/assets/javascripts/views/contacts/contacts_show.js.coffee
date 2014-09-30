@@ -10,5 +10,9 @@ class BackbonerailsApp.Views.ContactsShow extends Backbone.View
     Backbone.history.navigate('/#contacts', {trigger: true})
 
   render: ->
+    console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+    console.log(jQuery.type( @collection ) )
+    if jQuery.type(@collection) == "array"
+      @collection = new BackbonerailsApp.Collections.Contacts(@collection)
     $(@el).html(@template(contacts: @collection))
     this

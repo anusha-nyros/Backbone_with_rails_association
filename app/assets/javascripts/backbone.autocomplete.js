@@ -12,14 +12,13 @@ var AutoCompleteItemView = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template({
-            "label": this.model,
-            "option": this.options.test
+            "label": this.model
         }));
         return this;
     },
 
-    select: function () {
-        this.options.parent.hide().select(this.model);
+    select: function (id) {
+        this.options.parent.hide().select(this.model,id);
         return false;
     }
 
@@ -53,7 +52,7 @@ var AutoCompleteView = Backbone.View.extend({
             .after(this.$el);
 
 
-	this.$el.css({"margin-left": "900px", "margin-top": "28px"});
+	this.$el.css({"margin-left": "900px", "margin-top": "46px"});
 
         return this;
     },
@@ -126,7 +125,6 @@ var AutoCompleteView = Backbone.View.extend({
         this.show().reset();
         if (model.length) {
             _.forEach(model, this.addItem, this);
-		console.log(this.addItem)
             this.show();
         } else {
             this.hide();
@@ -134,31 +132,43 @@ var AutoCompleteView = Backbone.View.extend({
     },
 
     addItem: function (model) {
-	if (model.get('name').indexOf(this.currentText) > -1){
-	  alert(model.get('name'))
-	  model = model.get('name')
+ 	var model1 = []
+	var i = 0 
+        if(model.get('headline').indexOf(this.currentText) > -1){
+	  model1[i] = model.get('headline')
+	  i = i+1
         }
-        else if (model.get('headline').indexOf(this.currentText) > -1){
- 	  alert(model.get('headline'))
-	  model = model.get('headline')
+	if(model.get('name').indexOf(this.currentText) > -1){
+	  model1[i] = model.get('name')
+	  i = i+1
         }
-	else if (model.get('description').indexOf(this.currentText) > -1){
-	  alert(model.get('description'))
-	  model = model.get('description')
+
+	if(model.get('description').indexOf(this.currentText) > -1){
+	  model1[i] = model.get('description')
+	  i = i +1
         }
-        console.log(model)
+	//model1 =$.extend({}, model1);
         this.$el.append(new this.itemView({
-            model: model,
+            model: model1,
             parent: this,
             test: this.currentText
         }).render().$el);
     },
 
-    select: function (model) {
-        var label = model.label();
-        this.input.val(label);
+    select: function (model,id) {
+        var label = model;
+	var t = id.target.id
+	if (label.length >=2){
+	   for(var i=0;i<label.length;i++){
+	     if(t== label[i]){
+	           this.input.val(label[i])}
+	   }
+	}
+	else{
+           this.input.val(label)
+	}
         this.currentText = label;
-        this.onSelect(model);
+        this.onSelect(model,id);
     },
 
     reset: function () {
@@ -177,6 +187,21 @@ var AutoCompleteView = Backbone.View.extend({
     },
 
     // callback definitions
-    onSelect: function () {}
+    onSelect: function (model) {
+	var label = model
+	for(var i=0;i<label.length;i++){
+	var searchList = this.model.filter(function(listing) {
+    		return listing.get("name") == label[i] ||
+        listing.get("headline") === label[i] ||
+        listing.get("description") === label[i];
+	})
+	//var readyToGoList = this.model.where({'name': label[i], 'headline': label[i], 'description': label[i]});
+	}
+	console.log(searchList)
+	collect = new BackbonerailsApp.Collections.Listings(searchList);
+        var view = new Backgrid.Grid({columns: this.grid.columns, collection: collect})
+	$('#container').html(view.render().$el)
+    }
 
 });
+

@@ -1,0 +1,5 @@
+<%%= console.log(@countries.length)%>
+<% @countries = Country.all %>
+<%= label(:listing, :country_id, "Country:") %>
+<%= collection_select( :listing, :country_id, @countries, :id, :name,{ :multiple => true, :prompt => "Select Country" } ) %>
+

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 <h1>New Listing</h1>
-=======
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
 <% form_for :listing, url: "#", html: {class: "form-horizontal"} do |f| %>
 	<div class="form-group">
 		<%= f.label "Name" %>
@@ -15,7 +12,6 @@
 		<%= f.label "Description" %>
 		<%= f.text_area "description", size: "70x5" %>
         </div>
-<<<<<<< HEAD
 	<div class="form-group">
 		<%= f.label "Features" %>
 		<%% for feature in @features.models: %>
@@ -23,13 +19,25 @@
 			<%%= feature.get('name') %>
 		<%% end %>
 	</div>
+	<div class="country_select form-group">
+		<div class="group-controls">
+			<label class="control-label">Country: </label>
+			<div class="control-group">
+				<select onchange="print_state('listing_state_id',this.selectedIndex)" id="listing_country_id" name ="listing_country_id"></select>
+				<script language="javascript">print_country("listing_country_id")</script>
+			</div>
+		</div>
+	</div>
+	<div class="state_select form-group">
+		<div class="group-controls">
+			<label class="control-label">State: </label>
+			<div class="control-group">
+				<select name ="state" id ="listing_state_id" name="listing_state_id"></select>
+		        </div>
+		</div>
+	</div>
 	<div class="form_actions">
 		<%= link_to "Back", "#/listings", class: 'btn back'%>
-=======
-
-	<div class="form_actions">
-		<%= link_to "Back", "", class: 'btn back'%>
->>>>>>> 341ccd3929efec9760688a2c53f7195fa17290ee
 		<%= f.submit "Create Listing", class: "btn btn-primary button" %>
 	</div>
 <% end %>

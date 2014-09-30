@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 
- #before_filter :authenticate_user!
+ before_filter :authenticate_user!
   respond_to :json
 
     def index
@@ -38,6 +38,8 @@ class ListingsController < ApplicationController
       features = params[:listing][:feature_ids].collect { |i| Feature.find(i) }
       @listing.features = features
      @listing.user = current_user
+#    params[:listing][:country_id] = params[:listing][:country]
+ #       params[:listing][:state_id] = params[:listing][:state]
     @listing.save 
     respond_with @listing
 

@@ -1,0 +1,12 @@
+var ResetAutoCompleteView = Backbone.View.extend({
+
+    render: function () {
+
+	collect = new BackbonerailsApp.Collections.Listings(this.model);
+        var view = new Backgrid.Grid({columns: this.grid.columns, collection: collect})
+	$('#container').html(view.render().$el)
+
+        return this;
+    }
+});
+

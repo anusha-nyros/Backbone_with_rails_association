@@ -8,6 +8,10 @@ class BackbonerailsApp.Views.ListingsIndex extends Backbone.View
     'click .delete': 'destroyListing'
     'click .contact': 'newContact'
     'click .contactlist': 'contactList'
+    'click .reset': 'btn_reset'
+ 
+  btn_reset: ->
+      new ResetAutoCompleteView()
 
   contactList: (id)->
      id.preventDefault()

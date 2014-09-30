@@ -1,0 +1,2 @@
+<%%= console.log(@countries.length)%>
+<%%= select("listing", "country", options_from_collection_for_select(@countries, "id", "name")) %>

@@ -1,11 +1,11 @@
 class BackbonerailsApp.Routers.Listings extends Backbone.Router
 
  routes:
-    'listings/new': 'create'
-    '/listings': 'index'
+    'new': 'create'
+    '': 'index'
     '.*': 'index'
-    'listings/:id': 'show'
-    'listings/:id/edit' : 'edit'
+    ':id': 'show'
+    ':id/edit' : 'edit'
 
  #isSignedIn: ->
    # $('body').data('user-signed-in') == "true"
@@ -17,7 +17,7 @@ class BackbonerailsApp.Routers.Listings extends Backbone.Router
 
   index: ->
    # if @isSignedIn()
-      view = new BackbonerailsApp.Views.ListingsIndex(collection: @issues)
+      view = new BackbonerailsApp.Views.ListingsIndex(grid: @grid, collection: @issues)
     #else
     #  view = new BackbonerailsApp.Views.UsersIndex(model: @user)
     #$('#mainapp').html(view.render().el)

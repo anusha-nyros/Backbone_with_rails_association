@@ -16,7 +16,7 @@ class BackbonerailsApp.Views.ListingsNew extends Backbone.View
     @model.set name: @$('#listing_name').val()
     @model.set headline: @$('#listing_headline').val()
     @model.set description: @$('#listing_description').val()
-    @model.save({"name": @$el.find("#listing_name").val(),"headline": @$el.find("#listing_headline").val(),"description": @$el.find("#listing_description").val(), "feature_ids": sFilter})
+    @model.save({"name": @$el.find("#listing_name").val(),"headline": @$el.find("#listing_headline").val(),"description": @$el.find("#listing_description").val(), "feature_ids": sFilter, "country_id": @$el.find("#listing_country_id").val(),  "state_id": @$el.find("#listing_state_id").val()})
     console.log("succeess")
     console.log(@collection.length)
     $("#modal-window").modal('hide');
@@ -31,4 +31,11 @@ class BackbonerailsApp.Views.ListingsNew extends Backbone.View
     @features = new BackbonerailsApp.Collections.Features()
     @features.fetch().done => 
       $(@el).html(@template(listing: @model, features: @features))
+     # $(@el).append(this.afterRender().el);
     this
+
+
+ # afterRender: ->
+  #  view2 = new BackbonerailsApp.Views.CountriesIndex()
+  #  $('.country_select').html(view2.render().$el)
+

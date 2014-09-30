@@ -2,11 +2,12 @@
 <div class="span6">
  	<table class="table table-striped">
 		<tr><th>Name:</th><th>Email: </th><th>Phone: </th><th></th></tr>
-<%% for @contact in @contacts.models: %>
+<%%= console.log(@contacts)%>
+<%% for contact in @contacts.models: %>
 	<tr>
-	<td><%%= @contact.get('name') %></td>
-	<td><%%= @contact.get('email') %></td>
-	<td><%%= @contact.get('phone') %></td>
+	<td><%%= contact.get('name') %></td>
+	<td><%%= contact.get('email') %></td>
+	<td><%%= contact.get('phone') %></td>
 </tr>
 <%% end %>
 </table>

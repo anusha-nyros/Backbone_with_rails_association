@@ -1,0 +1,5 @@
+<%%= console.log(@countries.length)%>
+<% @states = State.all %>
+<%= label(:listing, :state_id, "State:") %>
+<%= collection_select( :listing, :state_id, @states, :id, :name,{ :disabled => true, :prompt => "Select State" } ) %>
+
